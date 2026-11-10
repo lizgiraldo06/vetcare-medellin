@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es" class="font-sans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare Medellín - Clínica & Hospital Veterinario 24/7</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen pb-16 md:pb-0">
+
+  <!-- NAVBAR -->
+  <header class="bg-white border-b border-emerald-100 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="showTab('dashboard')">
+          <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-emerald-200">
+            <i class="fa-solid fa-heart-pulse text-2xl"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-1">
+              <span class="text-xl font-extrabold text-slate-800 tracking-tight">VetCare</span>
+              <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Medellín</span>
+            </div>
+            <p class="text-xs text-slate-500 font-medium">Clínica & Hospital Veterinario</p>
+          </div>
+        </div>
+
+        <nav class="hidden md:flex space-x-1 lg:space-x-2">
+          <button onclick="showTab('dashboard')" id="nav-dashboard" class="nav-btn active flex items-center space-x-2 px-4 py-2.5 rounded-xl font-medium transition-all text-sm">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+          </button>
+          <button onclick="showTab('appointments')" id="nav-appointments" class="nav-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl font-medium transition-all text-sm text-slate-600 hover:text-emerald-700 hover:bg-emerald-50">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Agendar Cita</span>
+          </button>
+          <button onclick="showTab('records')" id="nav-records" class="nav-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl font-medium transition-all text-sm text-slate-600 hover:text-emerald-700 hover:bg-emerald-50">
+            <i class="fa-solid fa-id-card"></i>
+            <span>Cartilla Digital</span>
+          </button>
+          <button onclick="showTab('pharmacy')" id="nav-pharmacy" class="nav-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl font-medium transition-all text-sm text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 relative">
+            <i class="fa-solid fa-prescription-bottle-medical"></i>
+            <span>Farmacia</span>
+            <span id="cart-badge" class="ml-1 bg-amber-500 text-white text-xs px-2 py-0.5 rounded-full font-bold hidden">0</span>
+          </button>
+          <button onclick="showTab('triage')" id="nav-triage" class="nav-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl font-medium transition-all text-sm text-rose-600 bg-rose-50 hover:bg-rose-100">
+            <i class="fa-solid fa-triangle-exclamation text-rose-500"></i>
+            <span>Triaje SOS</span>
+          </button>
+        </nav>
+
+        <div class="hidden lg:flex items-center space-x-3">
+          <a href="tel:+576044440000" class="flex items-center space-x-2 px-4 py-2 bg-slate-900 text-white text-sm font-semibold rounded-xl hover:bg-slate-800 transition">
+            <i class="fa-solid fa-phone text-emerald-400"></i>
+            <span>(604) 444-0000</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- DASHBOARD VIEW -->
+    <div id="view-dashboard" class="tab-content space-y-12">
+      <div class="relative rounded-3xl bg-gradient-to-r from-emerald-800 to-teal-900 text-white overflow-hidden p-8 sm:p-12 shadow-2xl">
+        <div class="relative z-10 max-w-2xl space-y-6">
+          <span class="bg-emerald-500/30 text-emerald-200 border border-emerald-400/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+            Hospital Veterinario de Alta Complejidad
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            Salud, amor y cuidado especializado para tu mascota.
+          </h1>
+          <p class="text-emerald-100 text-base sm:text-lg leading-relaxed">
+            Medicina preventiva, urgencias 24/7 y la tecnología médica más avanzada del Valle de Aburrá en Medellín.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <button onclick="showTab('appointments')" class="px-6 py-3.5 bg-emerald-400 text-slate-950 font-bold rounded-xl shadow-lg hover:bg-emerald-300 transition flex items-center space-x-2">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Agendar Cita en Medellín</span>
+            </button>
+            <button onclick="showTab('triage')" class="px-6 py-3.5 bg-rose-600 text-white font-bold rounded-xl shadow-lg hover:bg-rose-500 transition flex items-center space-x-2">
+              <i class="fa-solid fa-truck-medical"></i>
+              <span>Urgencias 24 Horas</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <div class="flex justify-between items-end mb-8">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Servicios Médicos Veterinarios</h2>
+            <p class="text-slate-500 text-sm">Tarifas transparentes y atención en sede o domicilio.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white rounded-2xl p-6 border border-slate-200/80 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-600 group-hover:text-white rounded-xl flex items-center justify-center transition-colors">
+                  <i class="fa-solid fa-user-doctor text-xl"></i>
+                </div>
+                <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-bold">Popular</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Consulta General</h3>
+              <p class="text-sm text-slate-600 mb-4">Evaluación física completa, diagnóstico inicial y prescripción médica.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-lg font-extrabold text-emerald-700">$85.000 COP</span>
+              <button onclick="showTab('appointments')" class="text-sm text-emerald-600 font-semibold group-hover:translate-x-1 transition-transform">Reservar →</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-slate-200/80 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-600 group-hover:text-white rounded-xl flex items-center justify-center transition-colors">
+                  <i class="fa-solid fa-heart-pulse text-xl"></i>
+                </div>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Urgencias y Cuidado Crítico 24/7</h3>
+              <p class="text-sm text-slate-600 mb-4">Atención inmediata por equipo intensivista y triaje prioritario en Medellín.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-lg font-extrabold text-emerald-700">$150.000 COP</span>
+              <button onclick="showTab('appointments')" class="text-sm text-emerald-600 font-semibold group-hover:translate-x-1 transition-transform">Reservar →</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-slate-200/80 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 bg-emerald-50 group-hover:bg-emerald-600 text-emerald-600 group-hover:text-white rounded-xl flex items-center justify-center transition-colors">
+                  <i class="fa-solid fa-syringe text-xl"></i>
+                </div>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Vacunación Completa</h3>
+              <p class="text-sm text-slate-600 mb-4">Vacunas pentavalentes, rabia y triple felina con registro oficial.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-lg font-extrabold text-emerald-700">$65.000 COP</span>
+              <button onclick="showTab('appointments')" class="text-sm text-emerald-600 font-semibold group-hover:translate-x-1 transition-transform">Reservar →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-3xl p-8 border border-slate-200">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Equipo Médico Especialista</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300" alt="Vet" class="w-16 h-16 rounded-2xl object-cover">
+            <div>
+              <h4 class="font-bold text-slate-900">Dr. Alejandro Restrepo</h4>
+              <p class="text-xs text-emerald-700 font-medium">Cirugía & Traumatología</p>
+              <p class="text-xs text-slate-500 mt-1">12 años de experiencia</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <img src="https://images.unsplash.com/photo-1594824813566-88855ce78905?auto=format&fit=crop&q=80&w=300" alt="Vet" class="w-16 h-16 rounded-2xl object-cover">
+            <div>
+              <h4 class="font-bold text-slate-900">Dra. Valentina Gómez</h4>
+              <p class="text-xs text-emerald-700 font-medium">Medicina Interna & Felinos</p>
+              <p class="text-xs text-slate-500 mt-1">9 años de experiencia</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300" alt="Vet" class="w-16 h-16 rounded-2xl object-cover">
+            <div>
+              <h4 class="font-bold text-slate-900">Dr. Camilo Torres</h4>
+              <p class="text-xs text-emerald-700 font-medium">Dermatología & Nutrición</p>
+              <p class="text-xs text-slate-500 mt-1">7 años de experiencia</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- APPOINTMENTS VIEW -->
+    <div id="view-appointments" class="tab-content hidden max-w-4xl mx-auto">
+      <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Agendar Cita Médica Veterinaria</h2>
+        <p class="text-sm text-slate-500 mb-8">Selecciona la sede o modalidad a domicilio en Medellín.</p>
+
+        <form id="appointment-form" onsubmit="handleAppointmentSubmit(event)" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Propietario</label>
+              <input required type="text" value="Lizeth Giraldo" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Nombre de Mascota</label>
+              <input required type="text" value="Bruno" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Modalidad</label>
+              <select class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+                <option>Presencial - Sede El Poblado (Medellín)</option>
+                <option>Atención a Domicilio (Valle de Aburrá)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Especialista</label>
+              <select class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+                <option>Dr. Alejandro Restrepo (Cirugía)</option>
+                <option>Dra. Valentina Gómez (Felinos)</option>
+                <option>Dr. Camilo Torres (Dermatología)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Fecha</label>
+              <input required type="date" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Hora</label>
+              <select class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+                <option>09:00 AM - 10:00 AM</option>
+                <option>11:00 AM - 12:00 PM</option>
+                <option>02:30 PM - 03:30 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition shadow-lg text-base">
+            Confirmar Cita Médica
+          </button>
+        </form>
+
+        <div id="appointment-success" class="hidden text-center py-12 space-y-4">
+          <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+            <i class="fa-solid fa-circle-check text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900">¡Cita Agendada Exitosamente!</h3>
+          <p class="text-slate-600 max-w-md mx-auto text-sm">Hemos enviado la confirmación a tu correo y recordatorio por WhatsApp.</p>
+          <button onclick="resetAppointmentForm()" class="px-6 py-2.5 bg-emerald-600 text-white font-semibold rounded-xl text-sm">Agendar otra cita</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECORDS VIEW -->
+    <div id="view-records" class="tab-content hidden space-y-8 max-w-5xl mx-auto">
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="flex items-center space-x-4">
+          <div class="w-16 h-16 bg-emerald-100 text-emerald-800 font-extrabold text-3xl rounded-2xl flex items-center justify-center">
+            🐶
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Bruno</h2>
+            <p class="text-sm text-slate-500">Golden Retriever • 3 años • 28.5 kg</p>
+            <p class="text-xs text-emerald-700 font-medium">Microchip ID: 985141002847102</p>
+          </div>
+        </div>
+
+        <button onclick="toggleQR()" class="flex items-center space-x-2 px-4 py-2.5 bg-slate-900 text-white text-sm font-semibold rounded-xl">
+          <i class="fa-solid fa-qrcode"></i>
+          <span id="qr-btn-text">Mostrar QR Clínico</span>
+        </button>
+      </div>
+
+      <div id="qr-box" class="hidden bg-slate-900 text-white p-6 rounded-3xl text-center space-y-4">
+        <p class="text-sm text-slate-300">Escanea para verificar la historia médica oficial de Bruno</p>
+        <div class="w-40 h-40 bg-white p-3 rounded-2xl mx-auto flex items-center justify-center">
+          <div class="w-full h-full border-4 border-slate-900 rounded-lg flex items-center justify-center text-xs font-mono text-slate-900 font-bold p-2 text-center">
+            [ QR VETCARE MEDELLÍN ]
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-slate-200">
+        <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center justify-between">
+          <span>Esquema de Vacunación Verificado</span>
+          <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+        </h3>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center p-4 rounded-xl bg-slate-50 border border-slate-100 text-sm">
+            <div>
+              <p class="font-bold text-slate-800">Pentavalente Canina</p>
+              <p class="text-xs text-slate-500">Aplicada: 15 Ene 2026 por Dr. Alejandro Restrepo</p>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">Sello Verificado</span>
+              <p class="text-xs text-slate-500 mt-1">Próxima: 15 Ene 2027</p>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center p-4 rounded-xl bg-slate-50 border border-slate-100 text-sm">
+            <div>
+              <p class="font-bold text-slate-800">Vacuna Antirrábica</p>
+              <p class="text-xs text-slate-500">Aplicada: 15 Ene 2026 por Dr. Alejandro Restrepo</p>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">Sello Verificado</span>
+              <p class="text-xs text-slate-500 mt-1">Próxima: 15 Ene 2027</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHARMACY VIEW -->
+    <div id="view-pharmacy" class="tab-content hidden grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between gap-4">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-slate-400"></i>
+            <input type="text" id="pharmacy-search" oninput="renderPharmacy()" placeholder="Buscar medicamentos, dietas..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500">
+          </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Renderizado dinámico desde JS -->
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-3xl border border-slate-200 h-fit space-y-4">
+        <h3 class="font-bold text-slate-900 flex items-center space-x-2">
+          <i class="fa-solid fa-basket-shopping text-emerald-600"></i>
+          <span>Carrito de Compras</span>
+        </h3>
+        <div id="cart-items" class="space-y-3 text-sm">
+          <p class="text-xs text-slate-400 py-6 text-center">Tu carrito está vacío.</p>
+        </div>
+        <div class="pt-2 flex justify-between font-bold text-slate-900 text-base">
+          <span>Total:</span>
+          <span id="cart-total">$0 COP</span>
+        </div>
+        <button class="w-full py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition text-sm">
+          Proceder al Pago
+        </button>
+      </div>
+    </div>
+
+    <!-- TRIAGE VIEW -->
+    <div id="view-triage" class="tab-content hidden space-y-8 max-w-4xl mx-auto">
+      <div class="bg-rose-600 text-white p-6 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-4 shadow-xl">
+        <div>
+          <h2 class="text-2xl font-black">LÍNEA ROJA DE URGENCIAS VETERINARIAS 24/7</h2>
+          <p class="text-rose-100 text-sm mt-1">Sede Medellín. Atención inmediata sin cita previa.</p>
+        </div>
+        <a href="tel:+576044440000" class="px-6 py-3 bg-white text-rose-600 font-extrabold rounded-2xl hover:bg-rose-50 transition flex items-center space-x-2 shrink-0">
+          <i class="fa-solid fa-phone"></i>
+          <span>LLAMAR AHORA</span>
+        </a>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-slate-200">
+        <h3 class="font-bold text-slate-900 text-lg mb-4 flex items-center space-x-2">
+          <i class="fa-solid fa-triangle-exclamation text-rose-600"></i>
+          <span>Guías de Primeros Auxilios</span>
+        </h3>
+        <div class="space-y-4">
+          <div class="p-4 rounded-xl border border-red-500 bg-red-50 text-red-700">
+            <h4 class="font-bold mb-2">1. Sospecha de Intoxicación</h4>
+            <p class="text-sm">Conserve la calma, identifique el producto ingerido y no provoque el vómito sin supervisión médica.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-amber-500 bg-amber-50 text-amber-700">
+            <h4 class="font-bold mb-2">2. Golpe de Calor</h4>
+            <p class="text-sm">Mueva a la mascota a la sombra, aplique agua tibia o a temperatura ambiente (no helada) en cojinetes y abdomen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fa-solid fa-heart-pulse text-emerald-400 text-xl"></i>
+          <span class="text-xl font-bold text-white">VetCare Medellín</span>
+        </div>
+        <p class="text-sm text-slate-400">Hospital veterinario de alta complejidad y urgencias 24/7 en la ciudad de Medellín.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Contacto</h4>
+        <p class="text-sm text-slate-400">Sede Poblado: Cl. 10 #43E-12, Medellín</p>
+        <p class="text-sm text-slate-400">Urgencias: (604) 444-0000</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Horarios</h4>
+        <p class="text-sm text-slate-400">Urgencias: 24 Horas / 365 Días</p>
+        <p class="text-sm text-slate-400">Consultas: Lun - Sáb 7:00 AM - 8:00 PM</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BARRA DE NAVEGACIÓN MÓVIL INFERIOR -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 flex justify-around items-center py-2 px-1 shadow-lg">
+    <button onclick="showTab('dashboard')" class="flex flex-col items-center justify-center text-xs font-medium text-slate-600 hover:text-emerald-700 py-1 px-2">
+      <i class="fa-solid fa-house text-lg"></i>
+      <span class="text-[10px] mt-0.5">Inicio</span>
+    </button>
+    <button onclick="showTab('appointments')" class="flex flex-col items-center justify-center text-xs font-medium text-slate-600 hover:text-emerald-700 py-1 px-2">
+      <i class="fa-solid fa-calendar-days text-lg"></i>
+      <span class="text-[10px] mt-0.5">Citas</span>
+    </button>
+    <button onclick="showTab('records')" class="flex flex-col items-center justify-center text-xs font-medium text-slate-600 hover:text-emerald-700 py-1 px-2">
+      <i class="fa-solid fa-id-card text-lg"></i>
+      <span class="text-[10px] mt-0.5">Cartilla</span>
+    </button>
+    <button onclick="showTab('pharmacy')" class="flex flex-col items-center justify-center text-xs font-medium text-slate-600 hover:text-emerald-700 py-1 px-2">
+      <i class="fa-solid fa-prescription-bottle-medical text-lg"></i>
+      <span class="text-[10px] mt-0.5">Farmacia</span>
+    </button>
+    <button onclick="showTab('triage')" class="flex flex-col items-center justify-center text-xs font-medium text-rose-600 py-1 px-2">
+      <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+      <span class="text-[10px] mt-0.5">SOS</span>
+    </button>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
